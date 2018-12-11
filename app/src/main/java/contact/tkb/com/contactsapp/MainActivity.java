@@ -17,21 +17,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Utils.loadJSONFromAsset(this);
-
 
         contactRecyclerView = findViewById(R.id.contactRecyclerView);
         contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         contactRecyclerView.setHasFixedSize(true);
-        ContactViewModel itemViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
+        ContactViewModel contactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
         final ContactAdapter adapter = new ContactAdapter(this);
-        itemViewModel.itemPagedList.observe(this, new Observer<PagedList<ContactModel>>() {
+
+        contactViewModel.contactPagedList.observe(this, new Observer<PagedList<ContactModel>>() {
             @Override
-            public void onChanged(@Nullable PagedList<ContactModel> items) {
-                adapter.submitList(items);
+            public void onChanged(@Nullable PagedList<ContactModel> contacts) {
+                adapter.submitList(contacts);
             }
         });
-
 
         contactRecyclerView.setAdapter(adapter);
     }

@@ -9,13 +9,13 @@ import androidx.paging.PagedList;
 
 public class ContactViewModel extends ViewModel {
 
-    LiveData<PagedList<ContactModel>> itemPagedList;
+    LiveData<PagedList<ContactModel>> contactPagedList;
     LiveData<PageKeyedDataSource<Integer, ContactModel>> liveDataSource;
 
     public ContactViewModel() {
 
-        ContactDataSourceFactory itemDataSourceFactory = new ContactDataSourceFactory();
-        liveDataSource = itemDataSourceFactory.getItemLiveDataSource();
+        ContactDataSourceFactory contactDataSourceFactory = new ContactDataSourceFactory();
+        liveDataSource = contactDataSourceFactory.getContactLiveDataSource();
 
         PagedList.Config config =
                 (new PagedList.Config.Builder())
@@ -23,7 +23,7 @@ public class ContactViewModel extends ViewModel {
                         .setPageSize(ContactDataSource.PAGE_SIZE)
                         .build();
 
-        itemPagedList = (new LivePagedListBuilder(itemDataSourceFactory, config)).build();
+        contactPagedList = (new LivePagedListBuilder(contactDataSourceFactory, config)).build();
 
     }
 }

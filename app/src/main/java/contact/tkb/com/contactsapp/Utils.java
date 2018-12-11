@@ -15,16 +15,11 @@ public class Utils {
     public static List<ContactModel> loadJSONFromAsset(Context context) {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("contact.json");
-
+            InputStream is = context.getAssets().open(Constants.JSON_FILE_NAME);
             int size = is.available();
-
             byte[] buffer = new byte[size];
-
             is.read(buffer);
-
             is.close();
-
             json = new String(buffer, "UTF-8");
             ObjectMapper mapper = new ObjectMapper();
 

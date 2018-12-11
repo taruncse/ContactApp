@@ -6,17 +6,17 @@ import androidx.paging.PageKeyedDataSource;
 
 public class ContactDataSourceFactory extends DataSource.Factory {
 
-    private MutableLiveData<PageKeyedDataSource<Integer, ContactModel>> itemLiveDataSource = new MutableLiveData<>();
+    private MutableLiveData<PageKeyedDataSource<Integer, ContactModel>> contactLiveDataSource = new MutableLiveData<>();
 
 
     @Override
     public DataSource create() {
-        ContactDataSource itemDataSource = new ContactDataSource();
-        itemLiveDataSource.postValue(itemDataSource);
-        return itemDataSource;
+        ContactDataSource contactDataSource = new ContactDataSource();
+        contactLiveDataSource.postValue(contactDataSource);
+        return contactDataSource;
     }
 
-    public MutableLiveData<PageKeyedDataSource<Integer, ContactModel>> getItemLiveDataSource() {
-        return itemLiveDataSource;
+    public MutableLiveData<PageKeyedDataSource<Integer, ContactModel>> getContactLiveDataSource() {
+        return contactLiveDataSource;
     }
 }

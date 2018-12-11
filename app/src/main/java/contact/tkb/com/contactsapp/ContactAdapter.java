@@ -31,15 +31,15 @@ public class ContactAdapter extends PagedListAdapter<ContactModel, ContactAdapte
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
-        ContactModel item = getItem(position);
+        ContactModel contact = getItem(position);
 
-        if (item != null) {
-            holder.txtName.setText(item.getName());
-            holder.txtNumber.setText(item.getName());
-            holder.txtEmail.setText(item.getEmail());
+        if (contact != null) {
+            holder.txtName.setText(contact.getName());
+            holder.txtNumber.setText(contact.getPhone());
+            holder.txtEmail.setText(contact.getEmail());
 
         } else {
-            Toast.makeText(mCtx, "Item is null", Toast.LENGTH_LONG).show();
+            Toast.makeText(mCtx, Constants.YOU_DONT_HAVE_ANY_DATA, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -47,9 +47,10 @@ public class ContactAdapter extends PagedListAdapter<ContactModel, ContactAdapte
 
     private static DiffUtil.ItemCallback<ContactModel> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<ContactModel>() {
+
                 @Override
-                public boolean areItemsTheSame(ContactModel oldItem, ContactModel newItem) {
-                    return oldItem.getName() == newItem.getName();
+                public boolean areItemsTheSame(@NonNull ContactModel oldItem, @NonNull ContactModel newItem) {
+                    return false;
                 }
 
                 @Override
