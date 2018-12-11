@@ -21,14 +21,18 @@ public class ContactDataSource extends PageKeyedDataSource<Integer, ContactModel
 
          List<ContactModel> contactList = Utils.loadJSONFromAsset(ContactApplication.get().getApplicationContext());
 
-         callback.onResult(contactList, null, FIRST_PAGE + 1);
+         if (contactList != null){
+             callback.onResult(contactList, null, FIRST_PAGE + 1);
+         }
 
     }
 
     @Override
     public void loadBefore(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ContactModel> callback) {
 
-
+        /*Snackbar.make(findViewById(R.id.myCoordinatorLayout), R.string.email_sent,
+                Snackbar.LENGTH_SHORT)
+                .show();*/
     }
 
     @Override
