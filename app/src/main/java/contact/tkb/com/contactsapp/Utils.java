@@ -8,14 +8,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
 
-    public static List<ContactModel> loadJSONFromAsset(Context context) {
+    private static  List<ContactModel> contactList;
+    private static List<ContactModel> loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = context.getAssets().open(Constants.JSON_FILE_NAME);
+            InputStream is = ContactApplication.get().getApplicationContext().getAssets().open(Constants.JSON_FILE_NAME);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -30,5 +32,14 @@ public class Utils {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public static List<ContactModel> getListByLimit(int startIndex, int endIndex) {
+        if (contactList == null){
+            contactList =  loadJSONFromAsset();
+        }
+
+        List<ContactModel> sublist = contactList.subList(startIndex, endIndex);
+        return sublist;
     }
 }
