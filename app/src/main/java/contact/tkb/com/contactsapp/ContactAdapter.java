@@ -17,7 +17,7 @@ public class ContactAdapter extends PagedListAdapter<ContactModel, ContactAdapte
     private Context mCtx;
 
     protected ContactAdapter(Context mCtx) {
-        super(DIFF_CALLBACK);
+        super(CALLBACK);
         this.mCtx = mCtx;
     }
 
@@ -34,9 +34,9 @@ public class ContactAdapter extends PagedListAdapter<ContactModel, ContactAdapte
         ContactModel contact = getItem(position);
 
         if (contact != null) {
-            holder.txtName.setText(contact.getName());
-            holder.txtNumber.setText(contact.getPhone());
-            holder.txtEmail.setText(contact.getEmail());
+            holder.txtName.setText("Name: "+contact.getName());
+            holder.txtNumber.setText("Number: "+contact.getPhone());
+            holder.txtEmail.setText("Email: "+contact.getEmail());
 
         } else {
             Toast.makeText(mCtx, Constants.YOU_DONT_HAVE_ANY_DATA, Toast.LENGTH_LONG).show();
@@ -45,7 +45,7 @@ public class ContactAdapter extends PagedListAdapter<ContactModel, ContactAdapte
     }
 
 
-    private static DiffUtil.ItemCallback<ContactModel> DIFF_CALLBACK =
+    private static DiffUtil.ItemCallback<ContactModel> CALLBACK =
             new DiffUtil.ItemCallback<ContactModel>() {
 
                 @Override
